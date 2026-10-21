@@ -1,0 +1,293 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  --background-start: #40344f;
+  --background-end: #241d2d;
+  --accent: #6d4d82;
+
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  color: #27232d;
+  background: linear-gradient(
+    145deg,
+    var(--background-start),
+    var(--background-end)
+  );
+  transition: background 300ms ease;
+}
+
+.app--work {
+  --background-start: #c94c5d;
+  --background-end: #8f263a;
+  --accent: #a83248;
+}
+
+.app--shortBreak {
+  --background-start: #4f9b73;
+  --background-end: #276347;
+  --accent: #347756;
+}
+
+.app--longBreak {
+  --background-start: #438f79;
+  --background-end: #205b51;
+  --accent: #2f7264;
+}
+
+.timer {
+  width: min(100%, 520px);
+  padding: 40px;
+  text-align: center;
+  background: rgb(255 255 255 / 92%);
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 28px;
+  box-shadow: 0 24px 70px rgb(20 12 25 / 24%);
+}
+
+.timer__header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.timer__mode {
+  margin: 12px 0 0;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.timer__display {
+  margin: 30px 0 20px;
+  color: var(--accent);
+  font-size: clamp(4.5rem, 18vw, 7rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+
+.timer__status,
+.timer__progress {
+  margin: 8px 0;
+  color: #625b69;
+}
+
+.timer__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.timer__controls button {
+  min-height: 48px;
+  padding: 12px 22px;
+  color: #ffffff;
+  font-weight: 700;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 14px;
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.timer__controls button + button {
+  color: var(--accent);
+  background: transparent;
+}
+
+.timer__controls button:hover {
+  box-shadow: 0 8px 20px rgb(35 24 40 / 18%);
+  transform: translateY(-2px);
+}
+
+.timer__controls button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.timer__controls button:focus-visible {
+  outline: 3px solid #27232d;
+  outline-offset: 3px;
+}
+
+.tomato {
+  width: min(45vw, 180px);
+  margin: 22px auto 0;
+  filter: drop-shadow(0 14px 16px rgb(80 31 42 / 20%));
+  transform-origin: center bottom;
+}
+
+.tomato svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.tomato__cheek {
+  fill: #ff8b82;
+  opacity: 0.65;
+}
+
+.tomato__eye {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tomato--neutral {
+  animation: tomato-idle 3s ease-in-out infinite;
+}
+
+.tomato--focused {
+  animation: tomato-thinking 2.4s ease-in-out infinite;
+}
+
+.tomato--relaxed {
+  animation: tomato-breathing 4s ease-in-out infinite;
+}
+
+.tomato--neutral .tomato__eye,
+.tomato--focused .tomato__eye {
+  animation: tomato-blink 4.5s ease-in-out infinite;
+}
+
+@keyframes tomato-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes tomato-thinking {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+
+  50% {
+    transform: rotate(1.5deg) translateY(-3px);
+  }
+}
+
+@keyframes tomato-breathing {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.025) translateY(-2px);
+  }
+}
+
+@keyframes tomato-blink {
+  0%,
+  44%,
+  48%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  46% {
+    transform: scaleY(0.08);
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 16px;
+  }
+
+  .timer {
+    padding: 32px 20px;
+    border-radius: 22px;
+  }
+
+  .timer__header h1 {
+    font-size: 1.125rem;
+  }
+
+  .timer__display {
+    margin: 26px 0 18px;
+    font-size: clamp(4rem, 23vw, 5.5rem);
+  }
+
+  .timer__controls {
+    flex-direction: column;
+  }
+
+  .timer__controls button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .app {
+    padding: 12px;
+  }
+
+  .timer {
+    padding: 28px 16px;
+  }
+
+  .timer__display {
+    font-size: 3.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app,
+  .timer__controls button {
+    transition: none;
+  }
+
+  .timer__controls button:hover {
+    transform: none;
+  }
+
+  .tomato,
+  .tomato__eye {
+    animation: none;
+  }
+}
